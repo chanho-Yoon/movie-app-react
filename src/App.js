@@ -1,30 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import axios from 'axios';
+import Movie from './Movie';
 
 class App extends React.Component {
   state = {
-    count: 0,
-    currentCount: 0,
+    isLoading: true,
+    movies: [],
   };
-  add = () => {
-    this.setState((current) => ({ count: current.count + 1, currentCount: current.count + 1 }));
+  getMovies = async () => {
+    const {
+      data: {
+        data: { movies },
+      },
+    } = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating');
+    this.setState({ movies: movies, isLoading: false });
   };
-  minus = () => {
-    this.setState((current) => ({ count: current.count - 1 }));
-  };
-  getCurrentValue = () => {
-    const currentValue = this.state.count;
-    console.log(currentValue);
-  };
+  async componentDidMount() {
+    this.getMovies();
+  }
   render() {
+    const { movies, isLoading } = this.state;
     return (
       <div>
-        <input type="text"></input>
-        <h1>The number is : {this.state.count}</h1>
-        <h1>Current value is : {this.state.currentCount}</h1>
-        <button onClick={this.add}>add</button>
-        <button onClick={this.minus}>Minus</button>
-        <button onClick={this.getCurrentValue}>getCurrentValue</button>
+        {isLoading
+          ? '로딩중'
+          : movies.map((movie) => {
+              return <Movie id={movie.id} year={movie.year} title={movie.title} summary={movie.summary} poster={movie.medium_cover_image} />;
+            })}
       </div>
     );
   }
