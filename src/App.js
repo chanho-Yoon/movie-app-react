@@ -5,7 +5,6 @@ import About from './routes/About';
 import Detail from './routes/Detail';
 import Navigation from './components/Navigation';
 
-    this.setState({ movies: movies, isLoading: false });
 function App() {
   return (
     <HashRouter>
