@@ -1,0 +1,39 @@
+a {
+  text-decoration: none;
+  color: none;
+}
+.detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.movie-detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #95a5a6;
+  width: 80%;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+.movieDetail__image {
+  max-width: 230px;
+  min-width: 230px;
+  margin-right: 15px;
+}
+.movieDetail__data {
+  width: 70%;
+}
+
+.movieDetail__title,
+.movieDetail__year {
+  margin: 0;
+  font-weight: 600;
+}
+.movieDetail__title {
+  margin-bottom: 5px;
+  font-size: 24px;
+  color: #2c2c2f;
+}
